@@ -3,20 +3,189 @@ title: "Empezando con R"
 author: "jjvelazcoa"
 date: "4/10/2020"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 Desde la consola de R digite getwd() para obtener la ruta del directorio de trabajo.
-```{r}
+```{r message=TRUE}
 getwd()
 ```
 
 Lo importante de saber en que directorio estamos trabajando es que en el momento de leer un archivo o escribir sobre un archivo esto se hará simultaneamente sobre el directorio de trabajo WD.
 
 Por ejemplo si escribo el siguiente comando:
-```{r}
+```{r message=TRUE}
 read.csv("mydata.csv")
 ```
 
 Nos muestra un error debido a que no tenemos ningún archivo en el directorio.
 
 Se puede ir desde R al menú file>Change dir.. y se selecciona la carpeta donde vamos a trabajar.
+
+Si escribo dir() obtendré una lista de los archivos que se encuentran en mi carpeta de trabajo:
+```{r message=TRUE}
+dir()
+```
+Lo mejor que se puede hacer al trabajar con este tipo de archivos es siempre crear el directorio de trabajo y guardar en esa carpeta todos los archivos con los que vayamos a interactuar durante el desarrollo del trabajo.
+
+## Entering Input
+
+En la consola de R introducimos algunas expresiones. El símbolo <- es el *assignment operator*.
+
+```{r message=TRUE}
+x <- 1
+print(x)
+```
+
+De esta manera asignamos un valor a una variable. Ahora cramos un vecto de caracteres llamado msg:
+
+```{r}
+msg <- "Hola"
+```
+
+Utilice #para generar comentarios. Literalmente ignora cualquier caracter que fuera escrito a la derecha del símbolo.
+```{r}
+#Esto es un comentario
+```
+
+Se pueden imprimir las variables sin llamar explicitamente la función print.
+
+## Evaluación
+Cuando se introduce una expresión en la consola esta es evaluda. Sin embargo, puede ocurrir que el resultado de la evaluación sea devuelto. Este será impreso automáticamente.
+
+```{r}
+y <- 5 #nada impreso
+```
+
+Se puede imprimir automáticamente:
+```{r}
+x
+```
+
+o explícitamente:
+```{r}
+print(x)
+```
+
+El número [1] indica que 5 es el primer elemento del vector.
+
+## Printing
+
+Use el operador : para crear secuencias de enteros.
+
+```{r}
+x<-1:20
+x
+```
+
+## Tipos de datos
+
+Todo lo que se encuentra en R puede ser llamado objeto. R tiene cinco báscias o "atómicas" clases de objetos:
+
+- Caracter
+
+- numérico (números reales)
+
+- enteros
+
+- complejos
+
+- operadores lógicos (True/Falso)
+
+El objeto más básico es un vector. Este solo puede tener objetos de la misma clase. 
+
+Se pueden crear *listas* que pueden contener diferentes objetos de diferentes clases. También se pueden crear vectores con la función vector(), cuyo primer argumento es la clase del vector y el segundo es la longitud. Sin embargo, no son muy utilizados en Análisis de datos.
+
+Los números son usados como objetos numéricos que a simple vista pueden parecer enteros(int), pero en realidad corresponden a objetos numéricos (float) como 1.00 y 2.00. 
+
+Si se desea trabajar con enteros se debe escribir el número acompañado de una L al lado. Como 1L, esto explícitamente le indica a R que se va a trabajar con un entero.
+
+```{r}
+1L
+```
+
+También existe el valor infinito como Inf. NaN, representa un valor indefinido como ("not a number"). Por ejemplo al introducir 1/0 obtenemos un Inf y al introducir un 0/0 obtenemos NaN. También este último puede significar un valor perdido.
+
+## Atributos
+
+Algunas variables de R pueden contener atributos, estos son metadata del objeto de R que permite describir el objeto. Algunos ejemplos:
+
+- names, dimnames
+
+- dimensions (e.g. Matrices y arreglos)
+
+- clases (entero, numérica)
+
+- longitud
+
+- algunas otras definidas por el usuario.
+
+Se pueden acceder a estos atributos utilizando su función:
+
+```{r}
+attributes()
+```
+
+En el caso de que un objeto de R no contenga atributos se devolverá NULL.
+
+
+## Creando vectores
+
+Se puede usar la función c() para crear vectores. En realidad se usa para concatenar, que es lo mismo que unir cosas. 
+
+```{r}
+x<-c(0.5,0.6) #numeric
+x<-c(TRUE,FALSE) #logical
+x<-c(T,F) #logical
+x<-c("a","b","c") #character
+x<-9:29 #integer
+x<-c(1+0i, 2+4i) #complex
+```
+
+También se puede usar la función vector():
+
+```{r}
+x<-vector("numeric", length=10)
+```
+Se utiliza para crear un vector con valores 0 por defecto.
+
+## Mezclando objetos
+
+Algunas veces pueden ocurrir mezclas de diferentes objetos de R:
+```{r}
+y <- c(1.7, "a") ## character
+y <- c(TRUE, 2) ## numeric
+y <- c("a", TRUE) ## character
+```
+El software hace una coerción donde tiene en cuenta el común entre las clases de objetos. Por lo tanto en el primer ejemplo se tiene en común el hecho de ser caracteres, por lo que 1.7 se convertirá en caracter. En el segundo ejemplo TRUE pasa a ser numérico identificado por un 1. En el caso de ser FALSo sería un cero.
+
+Estos son casos *coerción implícita*, en algunos casos puede dar el resultado deseado. 
+
+## Coerción explícita
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
